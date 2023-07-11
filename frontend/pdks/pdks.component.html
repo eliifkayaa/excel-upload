@@ -1,0 +1,132 @@
+<!-- <section>
+
+  <div class="container vh-100">
+    <div class="row justify-content-center h-100 ">
+      <div class="col-xl-12">
+        <h2>PDKS</h2>
+        <div class="card">
+          <div class="card-body">
+
+            <div class="file-upload">
+              <label for="fileInput">Dosya Seçin:</label>
+              <input type="file" id="fileInput" (change)="onFilesSelected($event)">
+              <button class="btn button" (click)="onUpload()" [disabled]="!selectedFiles">Yükle</button>
+            </div>
+            <div class="previous-uploads">
+              <h4>PDKS Yüklemeleri</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Dosya Adı</th>
+                    <th>İşlemler</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a [href]="pdksList[pdksList.length - 1]?.dosyaYolu">{{ pdksList[pdksList.length - 1]?.dosyaAdi
+                        }}</a></td>
+                    <td>
+                      <button class="btn btn-sm button" (click)="onDelete(pdksList[pdksList.length - 1])">Sil</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pdks-table" *ngIf="pdksList.length > 0">
+              <h3 style="text-align: center;">PDKS Verileri</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>PDKS Kodu</th>
+                    <th>Tarih</th>
+                    <th>Giriş</th>
+                    <th>Çıkış</th>
+                    <th>Toplam Saat</th>
+                    <th>İzin Tipi</th>
+                    <th>İzin Süresi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pdks of pdksList">
+                    <td>{{ pdks.pdkskod }}</td>
+                    <td>{{ pdks.tarih | date:'dd.MM.yyyy' }}</td>
+                    <td>{{ pdks.giris }}</td>
+                    <td>{{ pdks.cikis }}</td>
+                    <td>{{ pdks.toplam }}</td>
+                    <td>{{ pdks.izintipi }}</td>
+                    <td>{{ pdks.izinsuresi }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> -->
+            <section>
+              <div class="container vh-100">
+                <div class="row justify-content-center h-100">
+                  <div class="col-xl-12">
+                    <h2>PDKS</h2>
+                    <div class="card">
+                      <div class="card-body">
+
+                        <div class="file-upload">
+                          <label for="fileInput">Dosya Seçin:</label>
+                          <input type="file" id="fileInput" multiple (change)="onFilesSelected($event)">
+                          <button class="btn button" (click)="onUpload()"
+                            [disabled]="!selectedFiles || selectedFiles.length === 0">Yükle</button>
+                        </div>
+
+                        <div class="previous-uploads" *ngIf="pdksList.length > 0">
+                          <h4>PDKS Yüklemeleri</h4>
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>Dosya Adı</th>
+                                <th>İşlemler</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let fileName of fileNames">
+                                <td><a href="#">{{ fileName }}</a></td>
+                                <td>
+                                  <button class="btn btn-sm button" (click)="openPdksData(fileName)">Görüntüle</button>
+                                  <button class="btn btn-sm button" (click)="onDelete(fileName)">Sil</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div class="pdks-table" *ngIf="pdksData && pdksData.length > 0">
+                          <h3 style="text-align: center;">PDKS Verileri</h3>
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>PDKS Kodu</th>
+                                <th>Tarih</th>
+                                <th>Giriş</th>
+                                <th>Çıkış</th>
+                                <th>Toplam Saat</th>
+                                <th>İzin Tipi</th>
+                                <th>İzin Süresi</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let pdks of pdksData">
+                                <td>{{ pdks.pdkskod }}</td>
+                                <td>{{ pdks.tarih | date:'dd.MM.yyyy' }}</td>
+                                <td>{{ pdks.giris }}</td>
+                                <td>{{ pdks.cikis }}</td>
+                                <td>{{ pdks.toplam }}</td>
+                                <td>{{ pdks.izintipi }}</td>
+                                <td>{{ pdks.izinsuresi }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
